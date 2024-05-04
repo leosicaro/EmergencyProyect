@@ -1,17 +1,20 @@
+require('dotenv').config()
 const express = require('express')
 const App = express()
 const mysql = require('mysql')
 const cors = require("cors")
 
 
+
 App.use(cors())
 App.use(express.json())
-
+const PORT= process.env.PORT || 5000
 const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "gluglu23",
-    database: "usuarios"
+    host: process.env.DB_HOST ||"localhost",
+    user: process.env.DB_USER ||"root",
+    port: process.env.DB_DATABASE ||"3306",
+    password: process.env.DB_PASSWORD ,
+    database: process.env.DB_DATABASE ||"usuarios"
 })
 
 App.post("/create", (req, res) => {
@@ -80,6 +83,6 @@ App.delete("/delete/:id", (req, res) => {
 })
 
 
-App.listen(3000, () => {
-    console.log("listen in port 3000")
+App.listen(PORT, () => {
+    console.log(`listen on port ${PORT}`)
 })

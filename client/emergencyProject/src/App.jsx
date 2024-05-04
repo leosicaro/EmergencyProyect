@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Axios from "axios"
 import './App.css'
 
+
 function App() {
   const [nombre, setNombre] = useState('')
   const [edad, setEdad] = useState(0)
@@ -15,6 +16,9 @@ function App() {
   const [editar, setEditar] = useState(false)
 
 
+
+
+
   const add = () => {
     Axios.post("http://localhost:3000/create", {
       nombre: nombre,
@@ -24,6 +28,7 @@ function App() {
       antiguedad: antiguedad
     }).then(() => {
       alert("empleado Creado")
+      getUsuarios()
     })
   }
   const getUsuarios = () => {
