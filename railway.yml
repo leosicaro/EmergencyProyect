@@ -1,0 +1,16 @@
+version: 1
+services:
+  frontend:
+    buildCommand: npm install && npm run build
+    readyCommand: npm start
+    env:
+      - PORT: 3000
+    routes:
+      - src: /client
+  backend:
+    buildCommand: npm install && npm run build
+    readyCommand: npm start
+    env:
+      - PORT: 5000
+    routes:
+      - src: /server
